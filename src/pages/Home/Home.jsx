@@ -1,6 +1,5 @@
 import React from "react";
-import { Cateogory } from "../../components/Cateogory/Cateogory";
-import { VerticleProductCard } from "../../components/Product/VerticleProductCard";
+import { Cateogory , VerticleProductCard } from "../../components"
 import "./home.css"
 
 export const Home = () => {
