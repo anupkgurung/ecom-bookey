@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components";
 import { useAuthentication } from "../../context";
-import "./authentication.css";
+import "./signup.css";
 
 
 export const Signup = () => {
