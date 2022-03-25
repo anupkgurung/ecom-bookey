@@ -2,8 +2,7 @@ import React from "react";
 import { Routes , Route} from "react-router-dom";
 import Mockman from "mockman-js";
 import { Navbar } from "./components";
-import {Home} from "./pages/Home/Home"
-
+import { Home, Signup, Login } from "./pages";
 
 function App() {
   return (
@@ -11,6 +10,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />}/>
         <Route path="/mock" element={<Mockman />}/>
       </Routes>
     </div>
