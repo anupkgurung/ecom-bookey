@@ -1,17 +1,13 @@
-import { ProductCard, Filter} from "../../components"
-import { useFilter } from "../../context";
+import { ProductCard, Filter } from "../../components"
 
 export const Product = () => {
 
-     return (
+    return (
         <>
             <div id="content" className="content-body-product">
                 <Filter />
                 <ProductCard />
             </div>
-            
         </>
-            
-        
-     )
+    )
 }
