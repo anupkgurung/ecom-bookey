@@ -1,4 +1,6 @@
 export {Navbar} from "./Navbar/Navbar";
-export {Cateogory} from "./Cateogory/Cateogory";
+export {Category} from "./Category/Category";
 export {VerticleProductCard} from "./Product/VerticleProductCard";
 export { Input } from "./Input/Input";
+export { ProductCard } from "./Product/ProductCard";
+export { Filter } from "./Filter/Filter";

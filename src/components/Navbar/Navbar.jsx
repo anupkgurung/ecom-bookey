@@ -46,10 +46,10 @@ export const Navbar = () =>{
             <div id="navigation" className="navigation-bar">
                 <nav className="nav nav-box-shadow">
                     <ul className="ml-1 navbar-list">
-                        <li><Link className="link-style-none" tabIndex="1" to="/">Books</Link></li>
-                        <li><Link className="link-style-none" tabIndex="1" to="/">New Arrivals</Link></li>
-                        <li><Link className="link-style-none" tabIndex="1" to="/">Best Seller</Link></li>
-                        <li><Link className="link-style-none" tabIndex="1" to="/">Pre-Order</Link></li>
+                        <li><Link className="link-style-none" tabIndex="1" to="/products">Books</Link></li>
+                        <li><Link className="link-style-none" tabIndex="1" to="/products">New Arrivals</Link></li>
+                        <li><Link className="link-style-none" tabIndex="1" to="/products">Best Seller</Link></li>
+                        <li><Link className="link-style-none" tabIndex="1" to="/products">Pre-Order</Link></li>
                     </ul>
                 </nav>
             </div>

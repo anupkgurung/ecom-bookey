@@ -1,0 +1,78 @@
+.header-bar {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+.topbar {
+    width: 100%;
+    background-color: var(--white);
+    top: 0;
+    padding: 0.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+.icon-badge {
+    margin : -2.4rem 0rem 0rem 5.3rem;
+    line-height: .6rem;
+    width: 1.4rem;
+    padding: 0.4rem 0.5rem 0.3rem 0.45rem;
+}
+.logo{
+    height: 4rem;
+    width: 7rem;
+}
+.navbar-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 0rem 25rem;
+}
+.navbar-list > li {
+    padding: 1rem;
+}
+.nav {
+    padding: 0rem;
+}
+.nav-box-shadow {
+    box-shadow: -1px 5px 5px -4px black;  
+}
+.authentication {
+    display: none;
+}
+.search-bar-nav {
+    display: none;
+    background-color: var(--royalblue-bg);
+    padding: .5rem;
+}
+.input-width {
+    width: 25rem;
+    max-width: 100%;
+    padding: 1.25rem;
+}
+.navbar-list li:hover {
+    background-color: var(--doc-hover-light);
+}
+.list-inline a:hover {
+    background-color: transparent;
+}
+@media only screen and (max-width:1024px){
+
+    .topbar {
+        padding: 0rem 1rem;
+    }
+    .search-bar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .search-bar-head {
+        display: none;
+    }
+    .navigation-bar {
+        display: none;
+    }
+}
