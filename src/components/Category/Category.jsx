@@ -2,16 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Cateogory = () => {
+export const Category = () => {
     const [error, setError] = useState();
-    const [cateogory, setCateogory] = useState();
+    const [category, setCategory] = useState();
 
     useEffect(()=>{
         (async ()=>{
             try{
                 await axios.get("api/categories")
                 .then(({ data : {categories} })=>{
-                    setCateogory(categories);
+                    setCategory(categories);
                 })
             }catch(error){
                 setError(error);
@@ -24,12 +24,11 @@ export const Cateogory = () => {
             <aside className="padding-top-right">
                 <h5 className="text-color">Browse by Category</h5>
                 <ul className="cateogory">
-                    {cateogory && cateogory.map(({ _id, categoryName }) => (
+                    {category && category.map(({ _id, categoryName }) => (
                         <li className="m-1 list-style" key={_id}>
-                            <Link className="link-style-none" to="/">{categoryName}</Link>
+                            <Link className="link-style-none" to="/products">{categoryName}</Link>
                         </li>
                     ))}
-                    {/* href="./page/productlist.html */}
                 </ul>
             </aside>
         </div>
