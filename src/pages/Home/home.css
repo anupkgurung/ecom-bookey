@@ -9,9 +9,9 @@
 }
 .content-body-product {
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-gap: 2rem;
-    margin-top: 7rem;
+    grid-template-columns: 23% 77%;
+    grid-gap: 1rem;
+    margin-top: 6rem;
     padding: 2rem 1rem;
 }
 .aside-container {
@@ -27,6 +27,7 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     width: 100%;
+    padding-left: 2rem;
 }
 .content , .filter-container {
     padding: 1rem 0rem;

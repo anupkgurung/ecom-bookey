@@ -22,7 +22,7 @@ export const Input = ({
                 </div> :
                 <div className="show-paswrd flex-row padding-top-2">
                     <input type={type} id={id} className="checkbox" onChange={onChange} />
-                    <label htmlFor="id">{title}</label>
+                    <label htmlFor={id}>{title}</label>
                 </div>
                 :
                 <input className="input-width" autoComplete={hasAutoComplete ? "on" : "off"}
