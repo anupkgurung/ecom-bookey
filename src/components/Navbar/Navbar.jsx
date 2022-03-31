@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.jpg";
+import { useWishlist } from "../../context";
 import "./navbar.css";
 
 export const Navbar = () =>{
+    const { wishlistInitialState : {wishlist} } = useWishlist();
     return (
 
         <div className="header-bar">
@@ -21,13 +23,13 @@ export const Navbar = () =>{
                             <span className="material-icons pl-1">account_circle</span>
                         </li>
                         <li className="list-inline">
-                            <Link className="link-style-none" to="/">
-                                {/* href="./wishlist.html */}
+                            <Link className="link-style-none relative" to="/wishlist">
                                 <span className="material-icons pl-1">favorite_border</span>
+                                <span className="badge icon-badge wishlist-badge">{wishlist && wishlist.length}</span>
                             </Link>
                         </li>
                         <li className="list-inline">
-                            <Link className="link-style-none" to="/">
+                            <Link className="link-style-none relative" to="/">
                                 {/* href="./cart.html" */}
                                 <span className="material-icons pl-1">shopping_cart</span>
                                 <span className="badge icon-badge">4</span>
