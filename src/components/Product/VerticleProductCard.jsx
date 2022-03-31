@@ -4,7 +4,7 @@ import { useWishlist } from "../../context";
 
 export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
-    const { wishlistInitialState : { wishlist }, dispatchWishlist } = useWishlist();
+    const { wishlistInitialState : { wishlist }, dispatchWishlist } = useWishlist();    
 
     useEffect(() => {
         (async () => {
@@ -37,16 +37,24 @@ export const VerticleProductCard = () => {
                                 </div>
                             </div>
                             <div className="card-footer card-verticle-footer">
-                                <button className="btn btn-primary w-100" 
-                                    onClick={()=>console.log("buy")}
+                                <button className="btn btn-primary w-100"
                                     >Buy</button>
                                 <button className="btn btn-secondary w-100"
-                                     onClick={()=>
-                                        dispatchWishlist({
+                                     onClick={
+                                        wishlist.some(item => item._id === _id) ?
+                                        () => dispatchWishlist({
+                                            operation: "REMOVE_FROM_WISHLIST",
+                                            payLoad: {
+                                                _id, title, price, discount, image, author,
+                                            }
+                                        })
+                                        :
+                                        ()=> dispatchWishlist({
                                             operation : "ADD_TO_WISHLIST",
                                             payLoad : {_id,title, price, discount, image, author}
-                                        })}
-                                >Wishlist</button>
+                                        })
+                                    }
+                                >{wishlist.some(item => item._id === _id) ? "Remove":"Wishlist"}</button>
                                
                             </div>
                         </div>

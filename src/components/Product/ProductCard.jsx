@@ -3,7 +3,7 @@ import { useWishlist } from "../../context";
 export const ProductCard = ({ _id, title, price, discount, image, author }) => {
 
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
-    const hasAddToWisList = wishlist.some(item => item._id === _id)
+    const hasAddToWisList = wishlist.some(item => item._id === _id);
 
     return (
         <div className="item" key={_id}>
