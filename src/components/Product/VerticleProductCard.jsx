@@ -6,7 +6,7 @@ import { useWishlist, useCart } from "../../context";
 export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
-    const { intialState: { cartList }, dispatchCart } = useCart();
+    const { initialState: { cartList }, dispatchCart } = useCart();
 
     useEffect(() => {
         (async () => {
@@ -49,7 +49,7 @@ export const VerticleProductCard = () => {
                                     <button className="btn btn-primary w-100"
                                         onClick={() => dispatchCart({
                                             operation: "ADD_TO_CART",
-                                            payLoad: { _id, title, price, discount, image, author }
+                                            payLoad: { _id, title, price, discount, image, author, productQty : 1 }
                                         })
                                         }
                                     >Buy</button>

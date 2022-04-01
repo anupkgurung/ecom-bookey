@@ -1,8 +1,14 @@
 import { useCart } from "../../context"
 
 export const CartDetail = () => {
-    const { intialState : {cartDetail} }  = useCart();
-    const {total} = cartDetail ;
+    const { initialState : {cartDetail : {
+        grossTotal,
+        shipping,
+        discount,
+        gst,
+        total
+    }} }  = useCart();
+    
     return (
         <aside id="cart-total" className="flex-row-center">
             <div>
@@ -12,23 +18,23 @@ export const CartDetail = () => {
                         <hr className="w-100 hr-cart padding-top-2" />
                             <ul className="padding-top-2 flex-row">
                                 <li>Total Gross :</li>
-                                <li>₹{total}</li>
+                                <li>₹{grossTotal}</li>
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>Shipping :</li>
-                                <li>₹99</li>
+                                <li>{shipping}</li>
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>Discount :</li>
-                                <li>₹0</li>
+                                <li>₹{discount}</li>
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>GST :</li>
-                                <li>18%</li>
+                                <li>{gst}%</li>
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>Amount payable :</li>
-                                <li>1899</li>
+                                <li>{total}</li>
                             </ul>
                             <hr className="w-100 hr-cart padding-top-2" />
                             <div className="card-footer card-verticle-footer">

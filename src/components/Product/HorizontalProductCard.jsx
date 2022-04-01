@@ -1,15 +1,17 @@
+import { useState } from "react";
 import { useCart, useWishlist } from "../../context";
 import "./wishlist.css";
 
 export const HorizontalProductCard = () => {
 
-    const { intialState: { cartList }, dispatchCart } = useCart();
+    const { initialState: { cartList }, dispatchCart } = useCart();
+    const [ productCount, setProductCount ] = useState(1);
     const { dispatchWishlist } = useWishlist();
 
     return (
         <>
             {
-                cartList && cartList.length > 0 ? cartList.map(({ _id, title, price, discount, image, author }) => (
+                cartList && cartList.length > 0 ? cartList.map(({ _id, title, price, discount, image, author, productQty }) => (
                     <div className="item" key={_id}>
                         <div className='card-container card-container--horizontal'>
                             <div className="card-header">
@@ -50,13 +52,34 @@ export const HorizontalProductCard = () => {
                                     }
                                 >Move to wishlist</button>
                                 <div className="footer-icons">
-                                    <span className="material-icons">remove_circle_outline</span>
+                                    <span className="material-icons"
+                                        onClick={
+                                            ()=> {
+                                                // setProductCount((productCount)=>
+                                                // { return  productCount <= 1 ? 1 : productCount-1});
+                                                dispatchCart({
+                                                    operation : "DECREASE_QTY",
+                                                    payLoad : { _id, title, price, discount, image, author, productQty }
+                                                })
+                                            }
+                                        }
+                                    >remove_circle_outline</span>
                                 </div>
                                 <div>
-                                    <input className="cart-qty text-center" name="qty" type="text" pattern="[0-9]" />
+                                    <input className="cart-qty text-center" name="qty" type="text" pattern="[0-9]"  value={productQty} />
                                 </div>
                                 <div className="footer-icons">
-                                    <span className="material-icons">add_circle_outline</span>
+                                    <span className="material-icons"
+                                        onClick={
+                                            ()=>{
+                                                // setProductCount(productCount=>productCount+1)
+                                                dispatchCart({
+                                                    operation : "INCREASE_QTY",
+                                                    payLoad : { _id, title, price, discount, image, author , productQty}
+                                                })
+                                            }
+                                        }
+                                    >add_circle_outline</span>
                                 </div>
                             </div>
                         </div>

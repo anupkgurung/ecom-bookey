@@ -5,7 +5,7 @@ import "./wishlist.css";
 export const ProductCard = ({ _id, title, price, discount, image, author }) => {
 
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
-    const { intialState: { cartList }, dispatchCart } = useCart();
+    const { initialState: { cartList }, dispatchCart } = useCart();
     const hasAddToWisList = wishlist.some(item => item._id === _id);
     const hasAddToCart = cartList.some(item => item._id === _id);
 
@@ -34,7 +34,7 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                             onClick={
                                 () => dispatchCart({
                                     operation: "ADD_TO_CART",
-                                    payLoad: { _id, title, price, discount, image, author }
+                                    payLoad: { _id, title, price, discount, image, author, productQty : 1 }
                                 })
                             }
                         >Add to Cart</button>
