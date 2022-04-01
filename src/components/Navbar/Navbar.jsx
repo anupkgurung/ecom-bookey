@@ -5,7 +5,7 @@ import "./navbar.css";
 
 export const Navbar = () =>{
     const { wishlistInitialState : {wishlist} } = useWishlist();
-    const { cartList } = useCart();
+    const { intialState : {cartList} } = useCart();
 
     return (
 
