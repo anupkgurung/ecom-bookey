@@ -89,3 +89,6 @@
 .text-color {
     color: var(--royalblue-bg);
 }
+.relative {
+    position: relative;
+}

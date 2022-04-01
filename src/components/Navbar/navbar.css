@@ -15,10 +15,13 @@
     align-items: center;    
 }
 .icon-badge {
-    margin : -2.4rem 0rem 0rem 5.3rem;
-    line-height: .6rem;
-    width: 1.4rem;
+     position: absolute;
+    background: blue;
+    border-radius: 50%;
     padding: 0.4rem 0.5rem 0.3rem 0.45rem;
+    line-height: .6rem;
+    width: 1.6rem;
+    margin: -2.6rem 1rem 1rem 5.2rem;
 }
 .logo{
     height: 4rem;
@@ -57,6 +60,9 @@
 }
 .list-inline a:hover {
     background-color: transparent;
+}
+.wishlist-badge {
+    margin :-2.62rem 1rem 1rem 3rem;
 }
 @media only screen and (max-width:1024px){
 
