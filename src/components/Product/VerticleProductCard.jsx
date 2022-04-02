@@ -49,7 +49,7 @@ export const VerticleProductCard = () => {
                                     <button className="btn btn-primary w-100"
                                         onClick={() => dispatchCart({
                                             operation: "ADD_TO_CART",
-                                            payLoad: { _id, title, price, discount, image, author, productQty : 1 }
+                                            payLoad: { _id, title, price, discount, image, author, productQty:1 }
                                         })
                                         }
                                     >Buy</button>

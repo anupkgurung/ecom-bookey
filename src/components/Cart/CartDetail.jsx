@@ -7,10 +7,12 @@ export const CartDetail = () => {
         discount,
         gst,
         total
-    }} }  = useCart();
+    }, cartList} }  = useCart();
     
     return (
-        <aside id="cart-total" className="flex-row-center">
+        <>
+        {cartList.length > 0 ? 
+            <aside id="cart-total" className="flex-row-center">
             <div>
                 <div className='card-container cart-detail'>
                     <div className="padding-5">
@@ -26,7 +28,7 @@ export const CartDetail = () => {
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>Discount :</li>
-                                <li>₹{discount}</li>
+                                <li>{discount}%</li>
                             </ul>
                             <ul className="padding-top-2 flex-row">
                                 <li>GST :</li>
@@ -44,5 +46,7 @@ export const CartDetail = () => {
                 </div>
             </div>
         </aside>
+            : <></>}
+        </>
     )
 }
