@@ -5,3 +5,4 @@ export { Input } from "./Input/Input";
 export { ProductCard } from "./Product/ProductCard";
 export { Filter } from "./Filter/Filter";
 export { HorizontalProductCard } from "./Product/HorizontalProductCard";
+export { CartDetail } from "./Cart/CartDetail";

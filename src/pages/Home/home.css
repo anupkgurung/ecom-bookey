@@ -112,6 +112,10 @@
 .card-footer > div {
     margin: 0;
 }
+.cart-detail {
+    width: 18rem;
+    height: 20rem;
+}
 /********** CARDS ************/
 @media only screen and (max-width:1000px) {
     .aside-container , .filter-container{
