@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useWishlist } from "../../context";
+import { Link } from "react-router-dom";
+import { useWishlist, useCart } from "../../context";
 
 export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
-    const { wishlistInitialState : { wishlist }, dispatchWishlist } = useWishlist();    
+    const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
+    const { initialState: { cartList }, dispatchCart } = useCart();
 
     useEffect(() => {
         (async () => {
@@ -23,7 +25,7 @@ export const VerticleProductCard = () => {
     return (
         <div id="main" className="content">
             <main className="content-container">
-                {productList && productList.map(({ _id,title, price, discount, image, author }) => (
+                {productList && productList.map(({ _id, title, price, discount, image, author }) => (
                     <div className="item" key={_id}>
                         <div className='card-container card-container--verticle'>
                             <span className="badge text-badge z-1 m-0">{discount}%</span>
@@ -37,25 +39,37 @@ export const VerticleProductCard = () => {
                                 </div>
                             </div>
                             <div className="card-footer card-verticle-footer">
-                                <button className="btn btn-primary w-100"
+                                {cartList.some(item => item._id === _id) ?
+                                    <Link className="w-100" to="/cart" >
+                                        <button className="btn btn-primary">
+                                            Go to Cart
+                                        </button>
+                                    </Link>
+                                    :
+                                    <button className="btn btn-primary w-100"
+                                        onClick={() => dispatchCart({
+                                            operation: "ADD_TO_CART",
+                                            payLoad: { _id, title, price, discount, image, author, productQty:1 }
+                                        })
+                                        }
                                     >Buy</button>
+                                }
                                 <button className="btn btn-secondary w-100"
-                                     onClick={
+                                    onClick={
                                         wishlist.some(item => item._id === _id) ?
-                                        () => dispatchWishlist({
-                                            operation: "REMOVE_FROM_WISHLIST",
-                                            payLoad: {
-                                                _id, title, price, discount, image, author,
-                                            }
-                                        })
-                                        :
-                                        ()=> dispatchWishlist({
-                                            operation : "ADD_TO_WISHLIST",
-                                            payLoad : {_id,title, price, discount, image, author}
-                                        })
+                                            () => dispatchWishlist({
+                                                operation: "REMOVE_FROM_WISHLIST",
+                                                payLoad: {
+                                                    _id, title, price, discount, image, author,
+                                                }
+                                            })
+                                            :
+                                            () => dispatchWishlist({
+                                                operation: "ADD_TO_WISHLIST",
+                                                payLoad: { _id, title, price, discount, image, author }
+                                            })
                                     }
-                                >{wishlist.some(item => item._id === _id) ? "Remove":"Wishlist"}</button>
-                               
+                                >{wishlist.some(item => item._id === _id) ? "Remove" : "Wishlist"}</button>
                             </div>
                         </div>
                     </div>

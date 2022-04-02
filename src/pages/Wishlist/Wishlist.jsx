@@ -1,6 +1,6 @@
 import { ProductCard } from "../../components";
 import { useWishlist } from "../../context";
-import "./wishlist.css";
+
 
 export const Wishlist = () => {
   const { wishlistInitialState: { wishlist } } = useWishlist();

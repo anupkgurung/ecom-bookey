@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.jpg";
-import { useWishlist } from "../../context";
+import { useWishlist, useCart } from "../../context";
 import "./navbar.css";
 
 export const Navbar = () =>{
     const { wishlistInitialState : {wishlist} } = useWishlist();
+    const { initialState : {cartList} } = useCart();
+
     return (
 
         <div className="header-bar">
@@ -29,10 +31,9 @@ export const Navbar = () =>{
                             </Link>
                         </li>
                         <li className="list-inline">
-                            <Link className="link-style-none relative" to="/">
-                                {/* href="./cart.html" */}
+                            <Link className="link-style-none relative" to="/cart">
                                 <span className="material-icons pl-1">shopping_cart</span>
-                                <span className="badge icon-badge">4</span>
+                                <span className="badge icon-badge">{cartList && cartList.length}</span>
                             </Link>
                         </li>
                     </ul>

@@ -1,9 +1,13 @@
-import { useWishlist } from "../../context";
+import { Link } from "react-router-dom";
+import { useWishlist, useCart } from "../../context";
+import "./wishlist.css";
 
 export const ProductCard = ({ _id, title, price, discount, image, author }) => {
 
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
+    const { initialState: { cartList }, dispatchCart } = useCart();
     const hasAddToWisList = wishlist.some(item => item._id === _id);
+    const hasAddToCart = cartList.some(item => item._id === _id);
 
     return (
         <div className="item" key={_id}>
@@ -15,11 +19,27 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                     </div>
                     <div className="card-desc m-2 card-desc--overlay">
                         <span className="price">₹{price}</span> |
-                        <span className="title">{title}</span>                        
+                        <span className="title">{title}</span>
                     </div>
                 </div>
                 <div className="card-footer card-verticle-footer product-card-footer">
-                    <button className="btn btn-primary w-100">Add to Cart</button>
+                    {hasAddToCart ?
+                        <Link className="w-100" to="/cart" >
+                            <button className="btn btn-primary w-100 ml-0">
+                                Go to Cart
+                            </button>
+                        </Link>
+                        :
+                        <button className="btn btn-primary w-100"
+                            onClick={
+                                () => dispatchCart({
+                                    operation: "ADD_TO_CART",
+                                    payLoad: { _id, title, price, discount, image, author, productQty:1 }
+                                })
+                            }
+                        >Add to Cart</button>
+                    }
+
                     <button className="btn btn-secondary w-100"
                         onClick={
                             hasAddToWisList ?

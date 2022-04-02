@@ -6,9 +6,9 @@
     margin: 5rem 0rem;
     padding: 5rem 0rem;
 }
-/* .card-img-container {
+.card-img-container.cart {
     height: 7.5rem;
-} */
+}
 .card-footer {
     gap: 0;
 }
