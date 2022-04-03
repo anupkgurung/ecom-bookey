@@ -17,16 +17,18 @@ export const Signup = () => {
     const handleShowPassword = () =>{
         setShowPassword((showPassword) => !showPassword);
     }
-    const { setUser } = useAuthentication();
+    const { setUserData } = useAuthentication();
     const handleSignup = async (e) => {
         e.preventDefault();
         try{
-            const {data : {createdUser ,encodedToken}} = await axios.post("/api/auth/signup",userCredentials);
+            const {data} = await axios.post("/api/auth/signup",userCredentials);
+            const { encodedToken } = data
             localStorage.setItem("token",encodedToken);
-            setUser(createdUser);
+            encodedToken ? data.isLogin = true : data.isLogin = false;
+            setUserData(data);
             navigateTo("/")
-        }catch(error){
-            console.log(error);
+        }catch({response}){
+            console.log(response.data.errors);
         }
     }
     const handleChange = (e) => {

@@ -2,12 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist, useCart } from "../../context";
+import {  addToUserWishlist, removeFromUserWishlist, addToUserCart } from "../../api";
 
 export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
     const { initialState: { cartList }, dispatchCart } = useCart();
-
+   
     useEffect(() => {
         (async () => {
             try {
@@ -22,6 +23,7 @@ export const VerticleProductCard = () => {
             }
         })()
     }, [])
+
     return (
         <div id="main" className="content">
             <main className="content-container">
@@ -47,27 +49,16 @@ export const VerticleProductCard = () => {
                                     </Link>
                                     :
                                     <button className="btn btn-primary w-100"
-                                        onClick={() => dispatchCart({
-                                            operation: "ADD_TO_CART",
-                                            payLoad: { _id, title, price, discount, image, author, productQty:1 }
-                                        })
+                                        onClick={() => addToUserCart({ _id, title, price, discount, image, author, qty:1} ,dispatchCart)
                                         }
                                     >Buy</button>
                                 }
                                 <button className="btn btn-secondary w-100"
                                     onClick={
                                         wishlist.some(item => item._id === _id) ?
-                                            () => dispatchWishlist({
-                                                operation: "REMOVE_FROM_WISHLIST",
-                                                payLoad: {
-                                                    _id, title, price, discount, image, author,
-                                                }
-                                            })
+                                            () => removeFromUserWishlist({_id, title, price, discount, image, author},dispatchWishlist)
                                             :
-                                            () => dispatchWishlist({
-                                                operation: "ADD_TO_WISHLIST",
-                                                payLoad: { _id, title, price, discount, image, author }
-                                            })
+                                            () => addToUserWishlist({_id, title, price, discount, image, author},dispatchWishlist)
                                     }
                                 >{wishlist.some(item => item._id === _id) ? "Remove" : "Wishlist"}</button>
                             </div>

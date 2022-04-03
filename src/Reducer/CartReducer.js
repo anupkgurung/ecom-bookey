@@ -19,15 +19,19 @@ export const CartReducer = (state, { operation, payLoad }) => {
         
         case "INCREASE_QTY":
             return { ...state, cartList :  state.cartList.map(product=>{
-                return {...product, productQty: payLoad.productQty+1}
+                return {...product, qty: payLoad.qty+1}
             })
         }
         case "DECREASE_QTY":
             return { ...state, cartList :  state.cartList.map(product=>{
-                    return {...product, productQty: payLoad.productQty <=1 ? 1 : payLoad.productQty-1}
+                    return {...product, qty: payLoad.qty <=1 ? 1 : payLoad.qty-1}
                 })
             }
-
+        case "EMPTY_CART":
+            return {
+                ...state,
+                cartList :[]
+            }
         default:
             return state;
     }
