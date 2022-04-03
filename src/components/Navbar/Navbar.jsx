@@ -1,12 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../image/logo.jpg";
-import { useWishlist, useCart } from "../../context";
+import { useWishlist, useCart, useAuthentication } from "../../context";
 import "./navbar.css";
 
 export const Navbar = () =>{
-    const { wishlistInitialState : {wishlist} } = useWishlist();
-    const { initialState : {cartList} } = useCart();
-
+    const { wishlistInitialState : {wishlist} ,dispatchWishlist } = useWishlist();
+    const { initialState : {cartList}, dispatchCart } = useCart();
+    const {userData } =useAuthentication();
+    const navigateTo = useNavigate();
+    const handleLogout = () => {
+        localStorage.clear()
+        dispatchCart({operation:"EMPTY_CART"});
+        dispatchWishlist({operation:"EMPTY_WISHLIST"});
+        navigateTo("/login");
+    }
     return (
 
         <div className="header-bar">
@@ -39,8 +46,21 @@ export const Navbar = () =>{
                     </ul>
                 </div>
                 <div className="authentication">
-                    <button className="btn btn-primary hide-default">Login</button>
-                    <button className="btn btn-secondary">Logout</button>
+                    {
+                        !userData ?
+                            <Link to="/login">
+                                <button className="btn btn-secondary">Login</button>
+                            </Link>
+                            :
+                            !userData.isLogin ?
+                                <Link to="/login">
+                                    <button className="btn btn-primary">Login</button>
+                                </Link> :
+                                <button className="btn btn-secondary" 
+                                onClick={()=>handleLogout()}
+                                >Logout</button>
+                                
+                    }
                 </div>
             </div>
             <div className="search-bar-nav">

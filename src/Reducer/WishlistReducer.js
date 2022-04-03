@@ -12,6 +12,11 @@ export const WishlistReducer = (state, { operation, payLoad }) => {
             return {
                 ...state, wishlist: state.wishlist.filter(item=>item._id !== payLoad._id)
             }
+        case "EMPTY_WISHLIST":
+            return {
+                ...state,
+                wishlist :[]
+            }
         default :
         return state;
     }

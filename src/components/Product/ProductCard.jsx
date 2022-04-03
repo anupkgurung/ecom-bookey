@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useWishlist, useCart } from "../../context";
+import {  addToUserWishlist, removeFromUserWishlist, addToUserCart } from "../../api";
 import "./wishlist.css";
 
 export const ProductCard = ({ _id, title, price, discount, image, author }) => {
 
+    const product = { _id, title, price, discount, image, author };
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
     const { initialState: { cartList }, dispatchCart } = useCart();
     const hasAddToWisList = wishlist.some(item => item._id === _id);
@@ -32,10 +34,7 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                         :
                         <button className="btn btn-primary w-100"
                             onClick={
-                                () => dispatchCart({
-                                    operation: "ADD_TO_CART",
-                                    payLoad: { _id, title, price, discount, image, author, productQty:1 }
-                                })
+                                () => addToUserCart({ _id, title, price, discount, image, author, qty:1} ,dispatchCart)
                             }
                         >Add to Cart</button>
                     }
@@ -43,19 +42,9 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                     <button className="btn btn-secondary w-100"
                         onClick={
                             hasAddToWisList ?
-                                () => dispatchWishlist({
-                                    operation: "REMOVE_FROM_WISHLIST",
-                                    payLoad: {
-                                        _id, title, price, discount, image, author,
-                                    }
-                                })
-                                :
-                                () => dispatchWishlist({
-                                    operation: "ADD_TO_WISHLIST",
-                                    payLoad: {
-                                        _id, title, price, discount, image, author,
-                                    }
-                                })
+                            () => removeFromUserWishlist(product,dispatchWishlist) 
+                            :
+                            () => addToUserWishlist(product,dispatchWishlist)
                         }
                     >{hasAddToWisList ? "Remove From Wishlist" : "Add to Wishlist"}</button>
                 </div>

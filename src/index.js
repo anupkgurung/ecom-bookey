@@ -5,8 +5,10 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom"
 import { AuthenticationProvider, ProductProvider, WishlistProvider, CartProvider } from "./context"
+import { clearLocalStorage } from "./clearLocalStorage";
 // Call make Server
 makeServer();
+clearLocalStorage();
 
 ReactDOM.render(
   <React.StrictMode>
