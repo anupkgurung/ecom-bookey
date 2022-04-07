@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../../components";
 import { useAuthentication } from "../../context";
 import "./signup.css";
+import { useDocumentTitle } from "../../customHooks";
 
 
 export const Signup = () => {
+    useDocumentTitle("Signup");
     const [showPassword, setShowPassword] = useState(false);
     const [userCredentials, setUserCredentials] = useState({
         firstName : "", lastName : "",password : "",email :"",

@@ -2,8 +2,10 @@ import { ProductCard } from "../../components";
 import { useWishlist } from "../../context";
 import {useState,useEffect} from "react";
 import { getUserWislistDetails } from "../../api";
+import { useDocumentTitle } from "../../customHooks";
 
 export const Wishlist = () => {
+  useDocumentTitle("Product");
   const { wishlistInitialState: { wishlist } } = useWishlist();
   const encodedToken = localStorage.getItem("token");
   const [userWishlist, setUserWishlist]  = useState({});

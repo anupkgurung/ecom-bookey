@@ -3,9 +3,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useFilter } from "../../context";
 import { useLocation } from "react-router-dom";
+import { useDocumentTitle } from "../../customHooks";
 
 export const Product = () => {
-
+    useDocumentTitle("Product");
     const { sortedItems, dispatchProductList } = useFilter();
     const {state} =useLocation();
     useEffect(() => {
