@@ -116,6 +116,15 @@
     width: 18rem;
     height: 20rem;
 }
+.footer{  
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    height: 5rem;
+    background-color: var(--royalblue-bg);
+    padding: 0.5rem;
+    z-index: 2;
+}
 /********** CARDS ************/
 @media only screen and (max-width:1000px) {
     .aside-container , .filter-container{

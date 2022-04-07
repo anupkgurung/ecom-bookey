@@ -2,15 +2,23 @@ import { ProductCard, Filter } from "../../components";
 import axios from "axios";
 import { useEffect } from "react";
 import { useFilter } from "../../context";
+import { useLocation } from "react-router-dom";
 
 export const Product = () => {
 
     const { sortedItems, dispatchProductList } = useFilter();
+    const {state} =useLocation();
     useEffect(() => {
         (async () => {
             try {
                 const { data: { products } } = await axios.get("/api/products");
                 dispatchProductList({ type: "SET_PRODUCT", payLoad: products })
+                if(state){
+                    dispatchProductList({
+                        type:"CATEGORY", 
+                        payLoad: state.category ,
+                        isSetPayLoad : true}) 
+                }
             } catch (error) {
                 console.log(error);
             }

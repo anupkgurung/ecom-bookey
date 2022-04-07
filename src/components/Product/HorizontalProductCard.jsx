@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCart, useWishlist } from "../../context";
 import { addToUserWishlist , getUserCartList ,removeFromUserCart, updateQtyToUserCart } from "../../api";
 import "./wishlist.css";
+import { useToast } from "../../customHooks";
 
 export const HorizontalProductCard = () => {
 
@@ -9,6 +10,7 @@ export const HorizontalProductCard = () => {
     const { dispatchWishlist } = useWishlist();
     const [ userCarList, setUserCartList ] = useState([]);
     const encodedToken = localStorage.getItem("token");
+    const { showToast } = useToast();
 
     const moveToWishlist = (product,dispatchWishlist,dispatchCart) => {
         removeFromUserCart(product,dispatchCart)
@@ -46,20 +48,21 @@ export const HorizontalProductCard = () => {
                             <div className="card-footer card-footer--height-horizontal">
                                 <button className="btn btn-primary"
                                     onClick={
-                                        () => removeFromUserCart({ _id, title, price, discount, image, author },dispatchCart)
+                                        () => removeFromUserCart({ _id, title, price, discount, image, author }
+                                            ,dispatchCart,showToast)
                                     }
                                 >Remove from Cart</button>
                                 <button className="btn btn-secondary-outline"
                                     onClick={
                                         () => moveToWishlist({ _id, title, price, discount, image, author },
-                                            dispatchWishlist,dispatchCart)
+                                            dispatchWishlist,dispatchCart,showToast)
                                     }
                                 >Move to wishlist</button>
                                 <div className="footer-icons">
                                     <span className="material-icons"
                                         onClick={
                                             () => updateQtyToUserCart({ _id, title, price, discount, image, author, qty },
-                                                dispatchCart,"DECREASE_QTY")
+                                                dispatchCart,"DECREASE_QTY",showToast)
                                         }
                                     >remove_circle_outline</span>
                                 </div>
@@ -70,7 +73,7 @@ export const HorizontalProductCard = () => {
                                     <span className="material-icons"
                                         onClick={
                                             ()=> updateQtyToUserCart({ _id, title, price, discount, image, author, qty },
-                                                dispatchCart,"INCREASE_QTY")
+                                                dispatchCart,"INCREASE_QTY",showToast)
                                         }
                                     >add_circle_outline</span>
                                 </div>

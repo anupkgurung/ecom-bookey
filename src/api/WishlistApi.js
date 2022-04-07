@@ -13,7 +13,11 @@ const getUserWislistDetails = async (setUserWishlist) => {
     }
 }
 
-const addToUserWishlist = async (product, dispatchWishlist) => {
+/*
+**  Dispatch in else will handle adding and removing of products without authentication 
+  and once user goes to cart it will ask for loggin  //TO-DO
+  */
+const addToUserWishlist = async (product, dispatchWishlist,showToast) => {
     const encodedToken = localStorage.getItem("token");
     try {
         if (encodedToken) {
@@ -31,13 +35,14 @@ const addToUserWishlist = async (product, dispatchWishlist) => {
                 payLoad: product
             })
         }
+        showToast("success", "Product added to Wishlist");
     } catch ({ response }) {
-        console.log(response);
+        showToast("error", "Error occured on adding product to wishlist");
     }
 
 }
 
-const removeFromUserWishlist = async (product, dispatchWishlist) => {
+const removeFromUserWishlist = async (product, dispatchWishlist,showToast) => {
     const encodedToken = localStorage.getItem("token");
     const { _id } = product;
     try {
@@ -57,8 +62,9 @@ const removeFromUserWishlist = async (product, dispatchWishlist) => {
                 payLoad: product
             })
         }
+        showToast("success", "Product removed from Wishlist");
     } catch ({ response }) {
-        console.log(response);
+        showToast("error", "Error occured on removing product from wishlist");
     }
 
 }

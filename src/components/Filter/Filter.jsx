@@ -78,7 +78,8 @@ export const Filter = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="padding-top-4">
+                    {/* TO-DO */}
+                    {/* <div className="padding-top-4">
                         <h6>Ratings</h6>
                         <ul className="rating padding-top-2">
                             {[...Array(5)].map((value,idx) =>(
@@ -88,7 +89,7 @@ export const Filter = () => {
                                 </>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                     <div>
                     </div>
             </aside>

@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist, useCart } from "../../context";
 import {  addToUserWishlist, removeFromUserWishlist, addToUserCart } from "../../api";
+import { useToast } from "../../customHooks";
 
 export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
     const { initialState: { cartList }, dispatchCart } = useCart();
+    const { showToast } = useToast();
    
     useEffect(() => {
         (async () => {
@@ -49,16 +51,19 @@ export const VerticleProductCard = () => {
                                     </Link>
                                     :
                                     <button className="btn btn-primary w-100"
-                                        onClick={() => addToUserCart({ _id, title, price, discount, image, author, qty:1} ,dispatchCart)
+                                        onClick={() => addToUserCart({ _id, title, price, discount, image, author, qty:1}
+                                             ,dispatchCart, showToast)
                                         }
                                     >Buy</button>
                                 }
                                 <button className="btn btn-secondary w-100"
                                     onClick={
                                         wishlist.some(item => item._id === _id) ?
-                                            () => removeFromUserWishlist({_id, title, price, discount, image, author},dispatchWishlist)
+                                            () => removeFromUserWishlist({_id, title, price, discount, image, author}
+                                                ,dispatchWishlist,showToast)
                                             :
-                                            () => addToUserWishlist({_id, title, price, discount, image, author},dispatchWishlist)
+                                            () => addToUserWishlist({_id, title, price, discount, image, author}
+                                                ,dispatchWishlist,showToast)
                                     }
                                 >{wishlist.some(item => item._id === _id) ? "Remove" : "Wishlist"}</button>
                             </div>

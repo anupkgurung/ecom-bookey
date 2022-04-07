@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useWishlist, useCart } from "../../context";
 import {  addToUserWishlist, removeFromUserWishlist, addToUserCart } from "../../api";
 import "./wishlist.css";
+import { useToast } from "../../customHooks";
 
 export const ProductCard = ({ _id, title, price, discount, image, author }) => {
 
@@ -10,6 +11,7 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
     const { initialState: { cartList }, dispatchCart } = useCart();
     const hasAddToWisList = wishlist.some(item => item._id === _id);
     const hasAddToCart = cartList.some(item => item._id === _id);
+    const { showToast } = useToast();
 
     return (
         <div className="item" key={_id}>
@@ -34,7 +36,8 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                         :
                         <button className="btn btn-primary w-100"
                             onClick={
-                                () => addToUserCart({ _id, title, price, discount, image, author, qty:1} ,dispatchCart)
+                                () => addToUserCart({ _id, title, price, discount, image, author, qty:1} 
+                                    ,dispatchCart,showToast)
                             }
                         >Add to Cart</button>
                     }
@@ -42,9 +45,9 @@ export const ProductCard = ({ _id, title, price, discount, image, author }) => {
                     <button className="btn btn-secondary w-100"
                         onClick={
                             hasAddToWisList ?
-                            () => removeFromUserWishlist(product,dispatchWishlist) 
+                            () => removeFromUserWishlist(product,dispatchWishlist,showToast) 
                             :
-                            () => addToUserWishlist(product,dispatchWishlist)
+                            () => addToUserWishlist(product,dispatchWishlist,showToast)
                         }
                     >{hasAddToWisList ? "Remove From Wishlist" : "Add to Wishlist"}</button>
                 </div>

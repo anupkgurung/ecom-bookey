@@ -26,7 +26,7 @@ export const Category = () => {
                 <ul className="cateogory">
                     {category && category.map(({ _id, categoryName }) => (
                         <li className="m-1 list-style" key={_id}>
-                            <Link className="link-style-none" to="/products">{categoryName}</Link>
+                            <Link className="link-style-none" to="/products" state={{category :categoryName}}>{categoryName}</Link>
                         </li>
                     ))}
                 </ul>

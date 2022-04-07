@@ -13,7 +13,13 @@ const getUserCartList = async (setUserCartList) => {
     }
 }
 
-const addToUserCart = async (product,dispatchCart) => {
+
+/*
+**  Dispatch in else will handle adding and removing of products without authentication 
+  and once user goes to cart it will ask for loggin  //TO-DO
+  */
+const addToUserCart = async (product,dispatchCart,showToast) => {
+    
     const encodedToken = localStorage.getItem("token");
     try {
         if (encodedToken) {
@@ -31,12 +37,13 @@ const addToUserCart = async (product,dispatchCart) => {
                 payLoad: product
             })
         }
-    } catch ({ response }) {
-        console.log(response);
+        showToast("success", "Product added to Cart");
+    } catch ({ response }) {       
+        showToast("error", "Error occured on add to Cart");
     }
 }
 
-const removeFromUserCart = async (product,dispatchCart) => {
+const removeFromUserCart = async (product,dispatchCart,showToast) => {
     const {_id} = product;
     const encodedToken = localStorage.getItem("token");
     try{
@@ -56,12 +63,13 @@ const removeFromUserCart = async (product,dispatchCart) => {
                 payLoad: product
             })
         }
+        showToast("success", "Product removed from Cart");
     }catch({response}){
-        console.log(response);
+        showToast("error", "Error occured on removing product from Cart");
     }
 }
 
-const updateQtyToUserCart = async (product,dispatchCart,action) => {
+const updateQtyToUserCart = async (product,dispatchCart,action,showToast) => {
     const {_id} = product;
     const encodedToken = localStorage.getItem("token");
     try{
@@ -84,9 +92,9 @@ const updateQtyToUserCart = async (product,dispatchCart,action) => {
                 payLoad : product
             })
         }
-       
+        showToast("success", `Quantity updated ${product.title}`);
     }catch({response}){
-        console.log(response);
+        showToast("error", "Error occured on updating quantity");
     }
 }
 

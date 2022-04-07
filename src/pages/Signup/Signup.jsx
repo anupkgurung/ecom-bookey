@@ -9,8 +9,8 @@ import "./signup.css";
 export const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [userCredentials, setUserCredentials] = useState({
-        firstName : "arnav", lastName : "kumar",password : "123@",email :"abc@gmail.com",
-        confirmPassword:"123@"
+        firstName : "", lastName : "",password : "",email :"",
+        confirmPassword:""
     });
     const navigateTo = useNavigate();
 
