@@ -1,6 +1,6 @@
-## The Booklet - E-Commerce
+## My Bookstore - E-Commerce
 
-# [The Booklet](https://thebooklet.netlify.app/)
+# [My BookStore](https://mybookstore.vercel.app/)
 
 
 Booklet is an online book outlet where you can find multiple categories of books of your choice.
