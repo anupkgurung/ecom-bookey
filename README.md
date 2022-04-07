@@ -8,6 +8,9 @@ Booklet is an online book outlet where you can find multiple categories of books
 Here is short demo for current screens.
 
 
+https://user-images.githubusercontent.com/31470135/162250901-49c24264-ace4-4534-9741-d45172a676e3.mp4
+
+
 # Links to Screen
 
 - [Login](https://mybookstore.vercel.app/login)
