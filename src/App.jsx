@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes , Route} from "react-router-dom";
 import Mockman from "mockman-js";
-import { Navbar, Toast, Footer } from "./components";
+import { Navbar, Toast } from "./components";
 import { Home, Signup, Login, Product, Wishlist, Cart } from "./pages";
 
 function App() {
@@ -18,7 +18,6 @@ function App() {
         <Route path="/cart" element={<Cart />}/>
         <Route path="/mock" element={<Mockman />}/>
       </Routes>
-      <Footer />
     </div>
   );
 }

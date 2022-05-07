@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../components";
+import { Input, Footer } from "../../components";
 import { useAuthentication } from "../../context";
 import "./signup.css";
 import { useDocumentTitle } from "../../customHooks";
@@ -41,6 +41,7 @@ export const Signup = () => {
         }))
     }
     return (
+        <>
         <div id="main" className="signup-container">
             <form className="signup-form flex-col">
             <div className="text-center">
@@ -111,5 +112,7 @@ export const Signup = () => {
                 <button onClick={handleSignup} className="btn btn-primary w-100 login-btn">Create Account</button>    
             </form>
         </div>
+        <Footer />
+        </>
     )
 }

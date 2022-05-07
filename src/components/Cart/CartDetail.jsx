@@ -12,7 +12,7 @@ export const CartDetail = () => {
     return (
         <>
         {cartList.length > 0 ? 
-            <aside id="cart-total" className="flex-row-center">
+            <aside id="cart-total" className="flex">
             <div>
                 <div className='card-container cart-detail'>
                     <div className="padding-5">
