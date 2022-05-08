@@ -22,9 +22,9 @@ const soryByPrice = (state,productList) => {
 }
 
 const filterByPrice = (state, productList) => {
-    return  [...productList].filter(
-        ({price}) => state.filterByPrice <= price )
-        //: productList
+    return state.filterByPrice >0 ? [...productList].filter(
+        ({price}) => Number(price) <= state.filterByPrice )
+        : productList
 }
 
 const ProductProvider = ({children}) => {
