@@ -1,5 +1,5 @@
 export const initialReducerValue = {
-        category: [], products: [], sortBy: null, filterByPrice: [],
+        category: [], products: [], sortBy: null, filterByPrice: 0,
         hasClearAll:false
 }
 
@@ -23,8 +23,7 @@ export const FilterReducer = (state, { type, payLoad, isSetPayLoad }) => {
 
                 case "FILTER_BY_PRICE":
                         return {
-                                ...state, filterByPrice: isSetPayLoad ? [...state.filterByPrice, payLoad]
-                                        : state.filterByPrice.filter(item => item !== payLoad)
+                                ...state, filterByPrice: payLoad
                                         ,hasClearAll:false
                         }
                 case "CLEAR_ALL":

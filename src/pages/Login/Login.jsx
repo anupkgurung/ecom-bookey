@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input } from "../../components";
+import { Input, Footer } from "../../components";
 import { useAuthentication } from "../../context";
 import { useDocumentTitle } from "../../customHooks";
 
@@ -33,6 +33,7 @@ export const Login = () => {
         }
     }
     return (
+        <>
         <div id="main" className="login-container">
             <form className="login-form flex-col">
                 <div className="text-center">
@@ -80,5 +81,7 @@ export const Login = () => {
                 </div>
             </form>
         </div>
+        <Footer />
+        </>
     )
 }

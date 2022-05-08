@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { PriceConstants } from "../../contants/Constants";
 import { useFilter } from "../../context";
+import "./Filter.css";
 
 export const Filter = () => {
     const [categoryList , setCategoryList] = useState([]);
@@ -46,13 +46,14 @@ export const Filter = () => {
                         <h6>By Price</h6>
                         <ul className="price padding-top-2 ">
                             <li><input type="radio" className="high" name="price" id="high"
-                            checked={sortBy!==null}
+                            checked={sortBy==='HIGH'}
                              onChange={(e)=>
                                 dispatchProductList({
                                     type:"HIGH_TO_LOW", 
                                     payLoad: e.target.checked ? "HIGH" : null})}/>
                              High to Low</li>
                             <li><input type="radio" className="low" name="price" id="low"
+                            checked={sortBy==='LOW'}
                              onChange={(e)=>
                                 dispatchProductList({
                                     type:"LOW_TO_HIGH", 
@@ -61,22 +62,15 @@ export const Filter = () => {
                         </ul>
                     </div>
                     <div className="padding-top-4">                        
-                        <h6>By Price Range</h6>             
-                        <ul className="price padding-top-2">                                                          
-                            {Object.keys(PriceConstants).map(key=>(
-                                <li className="m-1 list-style" key={key} >
-                                    <input type="checkbox" id={key}
-                                        checked={filterByPrice.length>0 && filterByPrice.includes(key)}
-                                        onChange={(e)=>
-                                            dispatchProductList({
-                                                type: "FILTER_BY_PRICE",
-                                                payLoad : key,
-                                                isSetPayLoad : e.target.checked
-                                            })}
-                                     /><label htmlFor={key}>{PriceConstants[key]}</label>
-                                </li>                                        
-                            ))}
-                        </ul>
+                        <h6>By Price Range</h6>
+                        <ul className="padding-top-2"><li> Price Ranges from 0 to {filterByPrice===0 ? 5000 :  filterByPrice}</li></ul>
+                        <input type="range" step="50" min="0" max="5000" className="slider" id="priceRange" value={filterByPrice}
+                            onChange={(e)=>
+                                dispatchProductList({
+                                    type: "FILTER_BY_PRICE",
+                                    payLoad : Number(e.target.value),
+                                })}
+                        />
                     </div>
                     {/* TO-DO */}
                     {/* <div className="padding-top-4">

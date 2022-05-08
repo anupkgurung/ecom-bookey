@@ -1,4 +1,4 @@
-import { ProductCard, Filter } from "../../components";
+import { ProductCard, Filter, Footer } from "../../components";
 import axios from "axios";
 import { useEffect } from "react";
 import { useFilter } from "../../context";
@@ -46,6 +46,7 @@ export const Product = () => {
                     </main>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
