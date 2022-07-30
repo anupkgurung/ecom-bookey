@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useWishlist, useCart } from "../../context";
+import { useWishlist, useCart, useFilter } from "../../context";
 import {  addToUserWishlist, removeFromUserWishlist, addToUserCart } from "../../api";
 import { useToast } from "../../customHooks";
 
@@ -9,6 +9,7 @@ export const VerticleProductCard = () => {
     const [productList, setProducts] = useState();
     const { wishlistInitialState: { wishlist }, dispatchWishlist } = useWishlist();
     const { initialState: { cartList }, dispatchCart } = useCart();
+    const { sortedItems,dispatchProductList } = useFilter();
     const { showToast } = useToast();
    
     useEffect(() => {
@@ -18,6 +19,8 @@ export const VerticleProductCard = () => {
                     .then(({ data }) => {
                         const { products } = data;
                         setProducts(products);
+                        dispatchProductList({ type: "SET_PRODUCT", payLoad: products })
+                        dispatchProductList({ type: "PRODUCT_LIST", payLoad: products })
                     })
 
             } catch (error) {
@@ -29,7 +32,7 @@ export const VerticleProductCard = () => {
     return (
         <div id="main" className="content">
             <main className="content-container">
-                {productList && productList.map(({ _id, title, price, discount, image, author }) => (
+                {sortedItems && sortedItems.map(({ _id, title, price, discount, image, author }) => (
                     <div className="item" key={_id}>
                         <div className='card-container card-container--verticle'>
                             <span className="badge text-badge z-1 m-0">{discount}%</span>

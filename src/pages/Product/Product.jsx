@@ -14,6 +14,7 @@ export const Product = () => {
             try {
                 const { data: { products } } = await axios.get("/api/products");
                 dispatchProductList({ type: "SET_PRODUCT", payLoad: products })
+                dispatchProductList({ type: "PRODUCT_LIST", payLoad: products })
                 if(state){
                     dispatchProductList({
                         type:"CATEGORY", 

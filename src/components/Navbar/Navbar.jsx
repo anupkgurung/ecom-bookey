@@ -1,19 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../image/logo.jpg";
-import { useWishlist, useCart, useAuthentication } from "../../context";
+import { useWishlist, useCart, useAuthentication, useFilter } from "../../context";
 import "./navbar.css";
 
 export const Navbar = () =>{
     const { wishlistInitialState : {wishlist} ,dispatchWishlist } = useWishlist();
     const { initialState : {cartList}, dispatchCart } = useCart();
-    const {userData } =useAuthentication();
+    const {userData,  setUserData } =useAuthentication();
     const navigateTo = useNavigate();
+    const { sortedItems, finalProductList, dispatchProductList } = useFilter();
     const handleLogout = () => {
         localStorage.clear()
         dispatchCart({operation:"EMPTY_CART"});
         dispatchWishlist({operation:"EMPTY_WISHLIST"});
+        setUserData("");
         navigateTo("/login");
     }
+
+    const searchProduct = (e) => {
+        let productName = e.target.value;
+        const searchList = finalProductList.productList;//sortedItems;
+        let products = searchList.filter(e => e.title.toLowerCase().includes(productName.toLowerCase()))
+        dispatchProductList({ type: "SET_PRODUCT", payLoad: products })
+    }
+
     return (
 
         <div className="header-bar">
@@ -24,7 +34,7 @@ export const Navbar = () =>{
                     </Link>
                 </div>
                 <div className="search-bar-head">
-                    <input type="text" className="search input-width" placeholder="Search" />
+                    <input type="text" className="search input-width" placeholder="Search" onChange={searchProduct} />
                 </div>
                 <div>
                     <ul>

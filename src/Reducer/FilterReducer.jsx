@@ -1,6 +1,7 @@
 export const initialReducerValue = {
         category: [], products: [], sortBy: null, filterByPrice: 0,
-        hasClearAll:false
+        hasClearAll:false,
+        productList:[]
 }
 
 export const FilterReducer = (state, { type, payLoad, isSetPayLoad }) => {        
@@ -29,6 +30,10 @@ export const FilterReducer = (state, { type, payLoad, isSetPayLoad }) => {
                 case "CLEAR_ALL":
                         return {
                                 ...state,filterByPrice:[],sortBy:null,category:[],hasClearAll:true
+                        }
+                case "PRODUCT_LIST":
+                        return {
+                                ...state, productList : payLoad,hasClearAll:false 
                         }
                 default:
                         return state;
