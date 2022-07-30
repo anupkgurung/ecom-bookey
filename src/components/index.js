@@ -8,3 +8,4 @@ export { HorizontalProductCard } from "./Product/HorizontalProductCard";
 export { CartDetail } from "./Cart/CartDetail";
 export { Toast } from "./Toast/Toast";
 export { Footer } from "./Footer/Footer" 
+export {Authenticate} from "./Authenticate/Authenticate"
